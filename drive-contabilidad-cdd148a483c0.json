@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "drive-contabilidad",
+  "private_key_id": "cdd148a483c0f72143960a7bcd3693d6d4d8d188",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4x0zDixbhqFX8\nOqrgiLP6Iz98JF0kW58fDsnQ1qUBgo4WAqlf6WUYemW7efTLfV4dNUhp7OSoRMJW\nvjlNdXVZsOlI8P2suVQ6mAv4Z150aU4566Qn0m21PmzO24PwZJXKqNnuH0d2tUwI\nqE7/BVHXmgIH1g6LI8XKg/hdy6RsMJhCzr3yDpYPHyI10UGmQWFylUyp3tvOG8aM\ny6RX8pYDHmq5izdiJMWfYvPjrOqCbEgysyrJi+V9iozqubwckye6NhwQLvTMY9Xf\n+dZOVXouiEn7egC1Oc8mznpOndc0TnfpcWtap0AwuRZcI4uz9ltC1e3K1v5qFVqU\nvHEiWO/bAgMBAAECggEALiveyp3ewdRGaBhgympeToqwOlz7yTH7uM8BLuXzpUTy\nLB3OJOE1GcC72vTGbnKNKc8+oPlIyaMkzHgL6YcII7lJEajmOlq06U9E7nUl7QDD\nQ0XWZvz13OwUVDwV4+O+aj1290Fpogf7T85+rsqtgKpDB6I9UBdIPSpszUMterrc\nabkadRziCGJUgDnJmRx+deNrJcUJVlLQ1OHVk1V24LEy81gu+h/IUmUMhiXmoFAD\ns1hir9cxo+/cFVfscy4VvMybtCjq2C05t7m6kPNIJsjVq4bcX72igtek3Gkb7QGr\ndveYqPo+iyXLyWTdCDh7gahyWKooHPCNI8cue3j6QQKBgQDz0YMIGvnDS1qgzpnd\ndF3/LWFHfws9kezWhnnVLEQL/cUbfPR4KUQKLbChKTivF8Rsc+4MWd0ZMPu5Xaja\n6xikMnT6XAREhGHlU7CxfX96JwSjL9O2jk/Fx/SKpP0+Fl4trmgGWJWxsDTeaJic\nNeOeym5zg+ZdGhSon78nuL/MpQKBgQDCAqfQoZDFrRA3U7vNc3M19iKe2UiwcQTu\nJ0tEha2hD5pIyZvWkpDnroRxUX1pd47oku9LlGveAj+JjwEYC+uuAYb4a+8s0zMP\nHE1cLQoiI4M06/g0ydZd54Jl6DCJw46cIroclriFScwFMG/yahoufhhgX0GoVH6Z\nYJlz5EqifwKBgQCdw4WLqxjNu2aLAuQgnXls8kot3xDA6Dldnmoa+6eUMsJlxPbT\nAbCa/XF69pdNBI3+twzjRQqBkGZxTR9DeDfblyKGFSBVzWsi3oJIdrITskeX6AyP\n5YnMqlObmqKamBKccGuzH4LNFP1ApGGLQntkdgv+Buz6dTPE4IjqBOtmWQKBgH4G\nEZJhUNRHTfBSkPytENqtjuGWjTQnxicZGThiiV3E79h2NaeVP1FvuJKPd6Kpygfj\nYlO7DrKAzVsCrJg9LhOy5ES8f/mjG1imbs4AZ8OzQ8h9u5Y2wevvtXGS+OyUPi/I\nExL9CNF0FXYNd7qFF4q52AXJ+rFoaXAiIqv4UE7rAoGAHiXTqhEpn7vTfGJwzRPY\nu8nQN8+ZPVE6G0INz2+PizdFdYlJay0pDwEyWbPxIodGwjKdJyK+LKl8rBbCxKy4\nTfZneYn1tFcDfij274ursVUzs93LNu/ZUMuHyCGQd2V6jNjlXfrrJcQ8yc45mpWr\nfFm5ppLabIG4viFSGLAvcIg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "contabilidaddrive@drive-contabilidad.iam.gserviceaccount.com",
+  "client_id": "116287398884067362430",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/contabilidaddrive%40drive-contabilidad.iam.gserviceaccount.com"
+}

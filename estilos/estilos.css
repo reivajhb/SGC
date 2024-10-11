@@ -1,0 +1,152 @@
+/* Reset de padding, margin y fuente */
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilo del cuerpo */
+body {
+    background-color: #f5f7fa;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; /* Reducir tamaño de la fuente del cuerpo */
+}
+
+/* Estilo para la clase home */
+.home {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Estilo para los elementos flexibles dentro de home */
+.in-flex {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Estilo específico para el primer hijo de in-flex */
+.in-flex:first-child {
+    flex: 2;
+    padding: 25px;
+    background-color: #ffffff;
+    margin: 20px;
+    margin-bottom: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Estilo para los divs dentro de in-flex */
+.in-flex div {
+    padding: 25px;
+    background-color: #ffffff;
+    margin: 20px;
+    font-size: 12px; /* Reducir tamaño de la fuente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;
+    max-width: 1450px;
+    margin: auto;
+}
+
+/* Estilo para las tablas */
+.table {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-collapse: collapse;
+    margin: 20px 0; /* Espaciado vertical */
+    padding: 0;
+    table-layout: fixed;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Para bordes redondeados */
+    background-color: #ffffff; /* Fondo blanco para las tablas */
+}
+
+/* Estilo para el título de la tabla */
+.table caption {
+    font-size: 24px; /* Reducir tamaño de la fuente */
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 16px 0; /* Espaciado vertical */
+}
+
+/* Estilo para las filas de la tabla */
+.table tr {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Estilo para las celdas de la tabla */
+.table th, .table td {
+    font-size: 11px; /* Reducir tamaño de la fuente */
+    padding: 12px 15px;
+    text-align: left;
+    border-right: 1px solid #e0e0e0;
+}
+
+/* Quitar borde derecho para la última celda */
+.table th:last-child, .table td:last-child {
+    border-right: none;
+}
+
+/* Centrando las primeras tres columnas */
+.table th:nth-child(-n+3), .table td:nth-child(-n+3) {
+    text-align: center;
+}
+
+/* Estilo para los encabezados de la tabla */
+.table thead th { 
+    text-transform: uppercase;
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/* Estilo para el hover de las filas del cuerpo de la tabla */
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo para el hover de las celdas del cuerpo de la tabla */
+.table tbody td:hover {
+    background-color: #e8e8e8;
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media screen and (max-width: 600px) {
+    .table {
+        border: 0px;
+        box-shadow: none; /* Quitar sombra en móviles */
+    }
+    .table caption {
+        font-size: 20px; /* Reducir tamaño de la fuente */
+    }
+    .table thead {
+        display: none;
+    }
+    .table tr {
+        margin-bottom: 8px;
+        border-bottom: 4px solid #ffffff;
+        display: block;
+    }
+    .table th, .table td {
+        font-size: 10px; /* Reducir tamaño de la fuente */
+    }
+    .table td {
+        display: block;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: right;
+    }
+    .table td:last-child {
+        border-bottom: 0px;
+    }
+    .table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        float: left;
+    }
+}

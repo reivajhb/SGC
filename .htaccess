@@ -1,0 +1,28 @@
+# .htaccess
+
+# Prevenir el cacheo de las páginas
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</IfModule>
+
+# Prevenir el acceso directo a archivos .htaccess y similares
+<FilesMatch "\.(htaccess|htpasswd|env)$">
+    Require all denied
+</FilesMatch>
+
+
+# Redirigir a login si no está autenticado
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^/index.php [NC]
+    RewriteCond %{REQUEST_URI} !^/css/.*$ [NC]
+    RewriteCond %{REQUEST_URI} !^/js/.*$ [NC]
+    RewriteCond %{REQUEST_URI} !^/images/.*$ [NC]
+    RewriteCond %{REQUEST_URI} !^/fonts/.*$ [NC]
+    RewriteCond %{HTTP_COOKIE} !PHPSESSID=
+    RewriteRule ^(.*)$ /index.php [R=302,L]
+</IfModule>

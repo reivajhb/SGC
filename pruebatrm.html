@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+
+  <label>Pesos</label>
+<input type="text" id="pesos"> 
+<br>
+<button type="button"  class="btn" onClick="cambio()">
+  convertir a dólar
+  </button>
+<br>
+<label>Dolares</label>
+<p type="text" id="resul" >
+</p>
+
+
+<script type="text/javascript">
+  
+  function cambio(){
+var dol = 2500; 
+var re ;   
+var pe =parseInt(document.getElementById('pesos').value, 10);
+ 
+re = pe / dol ;
+document.getElementById('resul').innerHTML= re;
+
+}
+
+</script>
+<style type="text/css">
+  
+  .btn{
+  background: #2196F3;
+  width: 100px;
+  height: 30px;
+  color:#fff;
+  border-radius: 3px;
+  margin: 10px 0;
+  border: solid 2px #fff;
+  font-size: 11px;
+  border-bottom: solid 2px #1565C0;
+}
+p{
+  color:black;
+  border-bottom:solid 2px red;
+  width:100px;
+  display: inline-block;
+}
+#pesos{
+  border-bottom:solid 2px red;
+ bkacground:white;
+  box-shadow:none;
+  border:none;
+    border-bottom:solid 2px red;
+}
+#pesos:hover, #pesos:focus{
+  border:none;
+      border-bottom:solid 2px red;
+}
+</style>
+</body>
+</html>
