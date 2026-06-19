@@ -1,5 +1,7 @@
 {
     "require": {
-        "php-imap/php-imap": "^2.0"
+        "php-imap/php-imap": "^2.0",
+        "phpoffice/phpspreadsheet": "^4.1",
+        "endroid/qr-code": "^5.1"
     }
 }

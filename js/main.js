@@ -35,34 +35,35 @@ function recortar(array, inicio, fin, tiporetencion) {
 
 function updateDescription() {
     // Get the selected values from the dropdowns and input fields
-    var selectedTipo = document.getElementById("tipo").value;
-    var selectedRetencion = document.getElementById("retencion").value;
-    var dobleretencion = document.getElementById("dobleretencion").value;
-    var valorestaretefuente = document.getElementById("valorestaretefuente").value;
-    var valorestareteica = document.getElementById("valorestareteica").value;
-    var concepto = document.getElementById("concepto").value;
-    var localizador = document.getElementById("localizador").value;
+    var selectedTipo = document.getElementById("tipo") ? document.getElementById("tipo").value : "";
+    var selectedRetencion = document.getElementById("retencion") ? document.getElementById("retencion").value : "";
+    var dobleretencion = document.getElementById("dobleretencion") ? document.getElementById("dobleretencion").value : "";
+    var valorestaretefuente = document.getElementById("valorestaretefuente") ? document.getElementById("valorestaretefuente").value : "";
+    var valorestareteica = document.getElementById("valorestareteica") ? document.getElementById("valorestareteica").value : "";
+    var concepto = document.getElementById("concepto") ? document.getElementById("concepto").value : "";
+    var localizador = document.getElementById("localizador") ? document.getElementById("localizador").value : "";
     
 
     // Update the textarea content with the selected values
-    var descripcionTextarea = document.getElementById("exampleFormControlTextarea1");
-    descripcionTextarea.value =
-      "Las retenciones aplicadas para este Anticipo son las siguientes:\n\n" +
-      "Tipo de retención: " +
-      selectedTipo +
-      "\nPorcentaje de retencion Retefuente: " +
-      selectedRetencion +
-      "\nPorcentaje de retencion Reteica: " +
-      dobleretencion +
-      "\nValor a restar Retefuente: " +
-      valorestaretefuente +
-      "\nValor a restar Reteica: " +
-      valorestareteica +
-      "\nConcepto: " +
-      concepto +
-      "\nLocalizador: " +
-      localizador;
-
+    var descripcionTextarea = document.getElementById("exampleFormControlTextarea1") || document.getElementById("descripcionRT");
+    if (descripcionTextarea) {
+        descripcionTextarea.value =
+          "Las retenciones aplicadas para este Anticipo son las siguientes:\n\n" +
+          "Tipo de retención: " +
+          selectedTipo +
+          "\nPorcentaje de retencion Retefuente: " +
+          selectedRetencion +
+          "\nPorcentaje de retencion Reteica: " +
+          dobleretencion +
+          "\nValor a restar Retefuente: " +
+          valorestaretefuente +
+          "\nValor a restar Reteica: " +
+          valorestareteica +
+          "\nConcepto: " +
+          concepto +
+          "\nLocalizador: " +
+          localizador;
+    }
     
   }
 
@@ -95,145 +96,138 @@ $tipo.addEventListener('change', function() {
 
  
 
-    const retefuente = document.querySelector('#retencion');
-  console.log(retefuente)
-    retefuente.addEventListener('change', () => {
-      let valorOption = retefuente.value;
-      console.log(valorOption);
-
-      var optionSelect = retefuente.options[retefuente.selectedIndex];
-
-      /*Mostrando el resultado en el input*/
-     
-if ($tipo.value === 'Retefuente') {
-  
-
-        contenido = document.getElementById("valor").value;
-
-        inputResult = document.querySelector('#resultRetefuente').value=( optionSelect.value);
-
-         x = contenido*inputResult
-
-         valorestaretefuente = document.getElementById("valorestaretefuente").value = x;
-
-         y = contenido - valorestaretefuente
-
-         valorPagaretefuente = document.getElementById("valorPagaretefuente").value = y;
-         ValorTotalApagar = document.getElementById("ValorTotalApagar").value = y;
-
-    console.log("Opción:", optionSelect.text);
-    console.log("Porcentaje:", optionSelect.value);
-    console.log("tipo:", $tipo.value);
-    console.log("Valorestar:", valorestaretefuente);
-    console.log("Valor:", contenido);
-    console.log("ValorPagar:", y);
-
-      // Call the updateDescription function after setting the value
-    updateDescription();
-        
-      } else if($tipo.value === 'Reteica'){
-
-       
-
-        contenido = document.getElementById("valor").value;
-
-      inputResult = document.querySelector('#resultReteica').value=( optionSelect.value);
-
-      x = contenido*inputResult/1000
-
-      valoreteica = document.getElementById("valorestareteica").value = x;
-
-      w = contenido - valoreteica
-
-      valorPagareteica = document.getElementById("valorPagareteica").value = w;
-
-      ValorTotalApagar = document.getElementById("ValorTotalApagar").value = w;
-
-     console.log("Opción:", optionSelect.text);
-     console.log("Porcentaje:", optionSelect.value);
-     console.log("tipo:", $tipo.value); 
-     console.log("Valorestar:", valoreteica);
-     console.log("Valor:", contenido);
-     console.log("valorpagar:", w);
-
-     // Call the updateDescription function after setting the value
-    updateDescription();
-
-
-      }else if($tipo.value === 'Retefuente y Reteica'){
-
-        contenido = document.getElementById("valor").value;
-
-        inputResult = document.querySelector('#resultRetefuente').value=( optionSelect.value);
-
-         x = contenido*inputResult
-
-         valorestaretefuente = document.getElementById("valorestaretefuente").value = x;
-
-         y = contenido - valorestaretefuente
-
-         valorPagaretefuente = document.getElementById("valorPagaretefuente").value = y;
-         
-
-
-   const RetefuenteyReteica = document.querySelector('#dobleretencion');
-   console.log(RetefuenteyReteica)
-            RetefuenteyReteica.addEventListener('change', () => {
-            let valorOption2 = RetefuenteyReteica.value;
-            console.log(valorOption2);
-
-            var optionSelectdobleretencion = RetefuenteyReteica.options[RetefuenteyReteica.selectedIndex];
-
-      
-      contenido2 = document.getElementById("valor").value;
-
-      inputResult2 = document.querySelector('#resultReteica').value=( optionSelectdobleretencion.value);
-
-      p = contenido2*inputResult2/1000
-
-      valorestareteica2 = document.getElementById("valorestareteica").value = p;
-
-      h = contenido2 - valorestareteica2
-
-      valorPagareteica2 = document.getElementById("valorPagareteica").value = h;
-      
-      s = valorestareteica2 + valorestaretefuente
-
-      sumretenciones = document.getElementById("sumretenciones").value = s;
-
-      q = contenido2 - sumretenciones
-
-      ValorTotalApagar = document.getElementById("ValorTotalApagar").value = q;
-
-     console.log("Opción:", optionSelect.text);
-     console.log("Porcentaje:", optionSelect.value);
-     console.log("tipo:", $tipo.value); 
-     console.log("valorestareteica2:", valorestareteica2);
-     console.log("valorestaretefuente:", valorestaretefuente);
-     console.log("Suma Retenciones:", s);
-     console.log("Suma ValorTotalApagar:", q);
-     console.log("Valor:", contenido2);
-
-     // Call the updateDescription function after setting the value
-    updateDescription();
-     
-        });
-      }else if($tipo.value === 'Sin Retenciones'){
-
-        valorSinRT = document.getElementById("valor").value ;
-
-         ValorTotalApagar = document.getElementById("ValorTotalApagar").value = valorSinRT ;
-      }
-
-
-
-
-
-   
+// Función para calcular doble retención
+function calcularDobleRetencion() {
+    const valorBase = parseFloat(document.getElementById("valor").value) || 0;
+    const valorRetefuente = parseFloat(document.getElementById("valorestaretefuente").value) || 0;
+    const dobleRetencionSelect = document.getElementById("dobleretencion");
     
+    if (dobleRetencionSelect.value === "Seleccione" || !dobleRetencionSelect.value) {
+        return;
+    }
     
- 
+    const tasaReteica = parseFloat(dobleRetencionSelect.value);
+    const valorReteica = valorBase * tasaReteica / 1000;
+    
+    document.getElementById("valorestareteica").value = valorReteica;
+    document.getElementById("resultReteica").value = tasaReteica;
+    
+    const sumaRetenciones = valorRetefuente + valorReteica;
+    document.getElementById("sumretenciones").value = sumaRetenciones;
+    
+    const valorTotalPagar = valorBase - sumaRetenciones;
+    document.getElementById("ValorTotalApagar").value = valorTotalPagar;
+    
+    console.log("Cálculo Doble Retención:");
+    console.log("Valor Base:", valorBase);
+    console.log("Retefuente:", valorRetefuente);
+    console.log("Reteica:", valorReteica);
+    console.log("Suma Retenciones:", sumaRetenciones);
+    console.log("Valor Total a Pagar:", valorTotalPagar);
+    
+    updateDescription();
+}
 
-      /* Mostrando resultado en la capa capaResultado*/
-      
+// Event listener para dobleretencion (fuera del listener de retencion)
+const dobleRetencionElement = document.querySelector('#dobleretencion');
+if (dobleRetencionElement) {
+    dobleRetencionElement.addEventListener('change', () => {
+        if ($tipo.value === 'Retefuente y Reteica') {
+            calcularDobleRetencion();
+        }
     });
+}
+
+const retefuente = document.querySelector('#retencion');
+console.log(retefuente)
+retefuente.addEventListener('change', () => {
+    let valorOption = retefuente.value;
+    console.log(valorOption);
+
+    var optionSelect = retefuente.options[retefuente.selectedIndex];
+
+    /*Mostrando el resultado en el input*/
+     
+    if ($tipo.value === 'Retefuente') {
+        contenido = document.getElementById("valor").value;
+
+        inputResult = document.querySelector('#resultRetefuente').value = optionSelect.value;
+
+        x = contenido * inputResult
+
+        valorestaretefuente = document.getElementById("valorestaretefuente").value = x;
+
+        y = contenido - valorestaretefuente
+
+        valorPagaretefuente = document.getElementById("valorPagaretefuente").value = y;
+        ValorTotalApagar = document.getElementById("ValorTotalApagar").value = y;
+
+        console.log("Opción:", optionSelect.text);
+        console.log("Porcentaje:", optionSelect.value);
+        console.log("tipo:", $tipo.value);
+        console.log("Valorestar:", valorestaretefuente);
+        console.log("Valor:", contenido);
+        console.log("ValorPagar:", y);
+
+        // Call the updateDescription function after setting the value
+        updateDescription();
+        
+    } else if($tipo.value === 'Reteica'){
+        contenido = document.getElementById("valor").value;
+
+        inputResult = document.querySelector('#resultReteica').value = optionSelect.value;
+
+        x = contenido * inputResult / 1000
+
+        valoreteica = document.getElementById("valorestareteica").value = x;
+
+        w = contenido - valoreteica
+
+        valorPagareteica = document.getElementById("valorPagareteica").value = w;
+
+        ValorTotalApagar = document.getElementById("ValorTotalApagar").value = w;
+
+        console.log("Opción:", optionSelect.text);
+        console.log("Porcentaje:", optionSelect.value);
+        console.log("tipo:", $tipo.value); 
+        console.log("Valorestar:", valoreteica);
+        console.log("Valor:", contenido);
+        console.log("valorpagar:", w);
+
+        // Call the updateDescription function after setting the value
+        updateDescription();
+
+    } else if($tipo.value === 'Retefuente y Reteica'){
+        contenido = document.getElementById("valor").value;
+
+        inputResult = document.querySelector('#resultRetefuente').value = optionSelect.value;
+
+        x = contenido * inputResult
+
+        valorestaretefuente = document.getElementById("valorestaretefuente").value = x;
+
+        y = contenido - valorestaretefuente
+
+        valorPagaretefuente = document.getElementById("valorPagaretefuente").value = y;
+        
+        // Calcular inmediatamente si ya hay un valor de doble retención seleccionado
+        const dobleRetencionSelect = document.getElementById("dobleretencion");
+        if (dobleRetencionSelect.value !== "Seleccione" && dobleRetencionSelect.value) {
+            calcularDobleRetencion();
+        } else {
+            // Si no hay doble retención aún, mostrar solo retefuente
+            ValorTotalApagar = document.getElementById("ValorTotalApagar").value = y;
+        }
+
+        console.log("Retefuente calculada:", x);
+        console.log("Esperando selección de Reteica...");
+        
+    } else if($tipo.value === 'Sin Retenciones'){
+        valorSinRT = document.getElementById("valor").value;
+
+        ValorTotalApagar = document.getElementById("ValorTotalApagar").value = valorSinRT;
+    }
+
+    /* Mostrando resultado en la capa capaResultado*/
+      
+});

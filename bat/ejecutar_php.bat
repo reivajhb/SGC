@@ -1,1 +1,2 @@
-php.exe C:\xampp\htdocs\Facturacion\tiquetes.php
+@echo off
+curl http://localhost/Facturacion/informes/informesTesoreria/alertaAnticiposCorreo.php

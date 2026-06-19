@@ -1,152 +1,241 @@
-/* Reset de padding, margin y fuente */
-* {
-    padding: 0px;
-    margin: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+/* === Tipografía corporativa global === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --azul: #2C56E6;
+    /* COLOR PREDOMINANTE */
+    --rojo: #DF3456;
+    /* COLOR SECUNDARIO */
+    --texto: #111827;
+    --texto-suave: #4b5563;
+    --borde: rgba(148, 163, 184, 0.4);
+    --bg-claro: #f9fafb;
 }
 
-/* Estilo del cuerpo */
+/* === Ajustes globales === */
 body {
-    background-color: #f5f7fa;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px; /* Reducir tamaño de la fuente del cuerpo */
+    font-size: 13px;
+    font-family: "Poppins", sans-serif !important;
+    color: var(--texto);
+    background: #ffffff;
 }
 
-/* Estilo para la clase home */
-.home {
-    display: flex;
-    flex-wrap: wrap;
+/* ==========================================================
+   TABLAS
+   ========================================================== */
+
+/* Contenedor wrapper — redondeo y sombra */
+.table-responsive,
+div[style*="border-radius"] > .table-responsive,
+div[style*="overflow: hidden"] {
+    border-radius: 7px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
 }
 
-/* Estilo para los elementos flexibles dentro de home */
-.in-flex {
-    flex: 1;
-    min-width: 200px;
-}
-
-/* Estilo específico para el primer hijo de in-flex */
-.in-flex:first-child {
-    flex: 2;
-    padding: 25px;
-    background-color: #ffffff;
-    margin: 20px;
-    margin-bottom: 0px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    border-radius: 8px; /* Bordes redondeados */
-}
-
-/* Estilo para los divs dentro de in-flex */
-.in-flex div {
-    padding: 25px;
-    background-color: #ffffff;
-    margin: 20px;
-    font-size: 12px; /* Reducir tamaño de la fuente */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    border-radius: 8px; /* Bordes redondeados */
-}
-
-/* Contenedor principal */
-.container {
+table.table {
     width: 100%;
-    max-width: 1450px;
-    margin: auto;
-}
-
-/* Estilo para las tablas */
-.table {
-    width: 100%;
-    border: 1px solid #e0e0e0;
-    border-collapse: collapse;
-    margin: 20px 0; /* Espaciado vertical */
-    padding: 0;
+    font-size: 12px;
+    border-collapse: collapse !important;
     table-layout: fixed;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    border-radius: 8px; /* Bordes redondeados */
-    overflow: hidden; /* Para bordes redondeados */
-    background-color: #ffffff; /* Fondo blanco para las tablas */
+    border-radius: 0;
 }
 
-/* Estilo para el título de la tabla */
-.table caption {
-    font-size: 24px; /* Reducir tamaño de la fuente */
-    text-transform: uppercase;
-    font-weight: bold;
-    margin: 16px 0; /* Espaciado vertical */
+/* Celdas */
+table.table th,
+table.table td {
+    padding: 4px 6px !important;
+    vertical-align: middle !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Estilo para las filas de la tabla */
-.table tr {
-    background-color: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
+/* Encabezado de tabla – SOLO AZUL (predominante) */
+table.table thead th {
+    background-color: var(--azul);
+    color: #ffffff;
+    font-weight: 600;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--borde);
 }
 
-/* Estilo para las celdas de la tabla */
-.table th, .table td {
-    font-size: 11px; /* Reducir tamaño de la fuente */
-    padding: 12px 15px;
-    text-align: left;
-    border-right: 1px solid #e0e0e0;
+/* Si usas Bootstrap .thead-light */
+.thead-light th {
+    background-color: var(--azul) !important;
+    color: #ffffff !important;
 }
 
-/* Quitar borde derecho para la última celda */
-.table th:last-child, .table td:last-child {
-    border-right: none;
+/* Columnas largas */
+table.table td.col-texto-largo {
+    white-space: normal;
+    word-wrap: break-word;
 }
 
-/* Centrando las primeras tres columnas */
-.table th:nth-child(-n+3), .table td:nth-child(-n+3) {
-    text-align: center;
+/* Divider filas */
+.table tbody tr td {
+    border-bottom: 1px solid var(--borde);
 }
 
-/* Estilo para los encabezados de la tabla */
-.table thead th { 
-    text-transform: uppercase;
-    background-color: #f5f5f5;
-    border-bottom: 2px solid #e0e0e0;
+/* Estado “pendiente” → azul suave */
+.pendiente {
+    background: rgba(44, 86, 230, 0.12) !important;
 }
 
-/* Estilo para el hover de las filas del cuerpo de la tabla */
-.table tbody tr:hover {
-    background-color: #f1f1f1;
+/* Responsive */
+.table-responsive {
+    overflow-x: auto;
 }
 
-/* Estilo para el hover de las celdas del cuerpo de la tabla */
-.table tbody td:hover {
-    background-color: #e8e8e8;
+/* ==========================================================
+   INPUTS Y FORMULARIOS
+   ========================================================== */
+.form-control,
+.form-select,
+input.form-control,
+select.form-control,
+textarea.form-control {
+    font-size: 12px;
+    height: 30px;
+    padding: 3px 6px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid rgba(148, 163, 184, 0.5) !important;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
-/* Estilos responsivos para pantallas pequeñas */
-@media screen and (max-width: 600px) {
-    .table {
-        border: 0px;
-        box-shadow: none; /* Quitar sombra en móviles */
+.form-select {
+    height: auto;
+    min-height: 30px;
+    padding-right: 2rem;
+}
+
+.form-control:focus,
+.form-select:focus,
+input.form-control:focus,
+select.form-control:focus,
+textarea.form-control:focus {
+    border-color: rgba(148, 163, 184, 0.7) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    outline: none !important;
+}
+
+/* ==========================================================
+   BOTONES
+   ========================================================== */
+
+/* BOTÓN PRINCIPAL → ROJO (secundario de acción) */
+.btn-primary {
+    background-color: var(--rojo);
+    border-color: var(--rojo);
+}
+
+.btn-primary:hover {
+    background-color: #c72e4c;
+    border-color: #c72e4c;
+}
+
+/* BOTÓN SECUNDARIO → AZUL */
+.btn-secondary,
+.btn-outline-primary {
+    border-color: var(--azul);
+    color: var(--azul);
+    background-color: transparent;
+}
+
+.btn-secondary:hover,
+.btn-outline-primary:hover {
+    background-color: var(--azul);
+    color: #ffffff;
+}
+
+/* BOTÓN SUCCESS O ACCIONES POSITIVAS → AZUL también */
+.btn-outline-success {
+    border-color: var(--azul);
+    color: var(--azul);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--azul);
+    color: #ffffff;
+}
+
+/* General */
+.btn {
+    font-size: 12px;
+    padding: 4px 8px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 6px;
+}
+
+/* ==========================================================
+   OTROS ELEMENTOS
+   ========================================================== */
+.p-3.border {
+    padding: 0.75rem !important;
+    border-color: var(--azul) !important;
+}
+
+a {
+    color: var(--azul);
+}
+
+a:hover {
+    color: #1f3ec9;
+}
+
+/* Scrollbars opcionales corporativos */
+::-webkit-scrollbar-thumb {
+    background: var(--azul);
+}
+
+.sufijo-input[readonly] {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 14px !important;
+}
+
+/* Botonera responsive: en móvil botones al 100% */
+.acciones-ficha .btn {
+    width: 100%;
+}
+
+/* En pantallas >= 576px (sm) vuelve a tamaño normal */
+@media (min-width: 576px) {
+    .acciones-ficha .btn {
+        width: auto;
     }
-    .table caption {
-        font-size: 20px; /* Reducir tamaño de la fuente */
-    }
-    .table thead {
-        display: none;
-    }
-    .table tr {
-        margin-bottom: 8px;
-        border-bottom: 4px solid #ffffff;
-        display: block;
-    }
-    .table th, .table td {
-        font-size: 10px; /* Reducir tamaño de la fuente */
-    }
-    .table td {
-        display: block;
-        border-bottom: 1px solid #e0e0e0;
-        text-align: right;
-    }
-    .table td:last-child {
-        border-bottom: 0px;
-    }
-    .table td::before {
-        content: attr(data-label);
-        font-weight: bold;
-        text-transform: uppercase;
-        float: left;
-    }
 }
+
+/* Botón rechazo corporativo (rojo) */
+.btn-danger-corp {
+    background-color: var(--rojo);
+    border-color: var(--rojo);
+    color: #fff;
+}
+
+.btn-danger-corp:hover {
+    background-color: #c72e4c;
+    border-color: #c72e4c;
+    color: #fff;
+}
+
+
+/* ===== TABLA HABITACIONES (ancha) ===== */
+#habitacionTable {
+    table-layout: auto !important;   /* 🔥 clave */
+    width: max-content;              /* permite crecer */
+    min-width: 1800px;               /* ajusta según columnas */
+    white-space: nowrap;             /* no romper headers */
+}
+
+/* Mantener estética compacta */
+#habitacionTable th,
+#habitacionTable td {
+    padding: 4px 6px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+
+

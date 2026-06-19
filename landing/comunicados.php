@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migración a la Nube - Información</title>
+    <title>INDUCCIÓN Y COMUNICADOS</title>
     <!-- Enlace a Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -18,21 +18,28 @@
 <body>
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Comunicados Sistemas</a>
+        <a class="navbar-brand" href="#">INDUCCIÓN Y COMUNICADOS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+            
             <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                    <a class="nav-link" href="induccion.php">Induccion Nuevo Personal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="politicas.php">Politicas de seguridad</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="capacitaciones.php">Capacitaciones</a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="comunicados.php">Migracion Nube</a>
                 </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="manuales.php">Información uso One drive</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="politicas.php">Politicas de seguridad</a>
                 </li>
             </ul>
         </div>
@@ -104,16 +111,23 @@
                             </li>
                             <li class="list-group-item">
                                 <strong>Equipo Turivel, Counter, Agencia de viajes y Corporativo</strong>
-                                <p>Nos encontramos en el proceso de socialización, configuración y entrega de cuentas para la posterior migración de archivos.</p>
+                                <p>Nos complace informar que hemos finalizado el proceso de socialización, configuración y entrega de cuentas. Ahora estamos listos para proceder con la migración de archivos, asegurando una transición fluida y eficiente.</p>
                                 <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">90%</div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <strong>Equipo Reservas, A la carta, Grupos, Soporte Web, Transportes y Negociaciones</strong>
+                                <p>Nos complace informar que hemos finalizado el proceso de socialización, configuración y entrega de cuentas. Ahora estamos listos para proceder con la migración de archivos, asegurando una transición fluida y eficiente.</p>
+                                <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Sucursales</strong>
                                 <p>Nos encontramos en el proceso de socialización, configuración y entrega de cuentas para la posterior migración de archivos.</p>
                                 <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="90">90%</div>
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="70">70%</div>
                                 </div>
                             </li>
                         </ul>

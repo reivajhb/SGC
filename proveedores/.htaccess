@@ -1,0 +1,12 @@
+# /facturacion/proveedores/vista/.htaccess
+
+# 1. Evita el listado de directorios (Directory Listing)
+Options -Indexes
+
+# 2. Redirigir index.php al archivo correcto
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Si la solicitud es exactamente para index.php, la redirige permanentemente (301)
+    # al index-proveedores.php que sí existe en este directorio.
+    RewriteRule ^index\.php$ index-proveedores.php [R=301,L]
+</IfModule>

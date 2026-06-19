@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuales de OneDrive</title>
+    <title>INDUCCIÓN Y COMUNICADOS</title>
     <!-- Enlace a Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -18,21 +18,27 @@
 <body>
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Migración a la Nube</a>
+        <a class="navbar-brand" href="#">INDUCCIÓN Y COMUNICADOS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                    <a class="nav-link" href="induccion.php">Inducción Nuevo Personal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="politicas.php">Politicas de seguridad</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="capacitaciones.php">Capacitaciones</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="comunicados.php">Migracion Nube</a>
                 </li>
                 
                 <li class="nav-item active">
                     <a class="nav-link" href="manuales.php">Información uso One drive<span class="sr-only">(current)</span></a>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="politicas.php">Politicas de seguridad</a>
                 </li>
             </ul>
             </ul>
