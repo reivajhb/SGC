@@ -98,6 +98,13 @@ switch ($action) {
             'workflow' => [
                 'id' => 'wf_69bac7d94770819085f669a93ebcca950ea42cfb55cb7a84'
             ],
+            'chatkit_configuration' => [
+                'file_upload' => [
+                    'enabled' => true,
+                    'max_files' => 10,
+                    'max_file_size' => 25
+                ]
+            ],
             'expires_after' => [
                 'anchor' => 'created_at',
                 'seconds' => 600

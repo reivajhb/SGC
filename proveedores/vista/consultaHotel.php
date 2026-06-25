@@ -18,6 +18,8 @@ define('ROL_2', 2); // ANALISTA CONTABLE
 define('ROL_8', 8);
 define('ROL_PROVEEDOR', 6);
 define('ROL_GESTORAS', 9);
+define('ROL_SOP_WEB', 10);
+define('ROL_ASESOR', 5);
 
 // Resolver rutas absolutas
 $ROOT = realpath(dirname(__DIR__, 2));
@@ -25,8 +27,8 @@ $ROOT = realpath(dirname(__DIR__, 2));
 // Variables de sesión
 $idRol = (int) ($_SESSION['id_rol'] ?? 0);
 // ================== PERMISOS ==================
-// En vista de consulta se permite: Admin, Cadena, Analistas, Gestoras y Proveedor
-$rolesPermitidos = [ROL_ADMIN, ROL_CADENA, ROL_2, ROL_8, ROL_PROVEEDOR, ROL_GESTORAS];
+// En vista de consulta se permite: Admin, Cadena, Analistas, Gestoras , Proveedor y soporte web
+$rolesPermitidos = [ROL_ADMIN, ROL_CADENA, ROL_2, ROL_8, ROL_PROVEEDOR, ROL_GESTORAS, ROL_SOP_WEB, ROL_ASESOR];
 
 if (!in_array($idRol, $rolesPermitidos, true)) {
     http_response_code(403);
@@ -2044,11 +2046,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                         </select>
                                     </td>
 
-                                    <td colspan="4"></td>
-                                </tr>
-
-                                <!-- FILA 1 -->
-                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['recepcion_24_hrs'] ?? 'Recepción 24 hrs'; ?>
                                     </td>
@@ -2064,7 +2061,10 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('transfer_aero_htl'); ?>
                                         </select>
                                     </td>
+                                </tr>
 
+                                <!-- FILA 1 -->
+                                <tr>
                                     <td class="required-label">Aire Acondicionado en el hotel</td>
                                     <td>
                                         <select name="servicios[aire_acondicionado]" class="form-select" required>
@@ -2078,10 +2078,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('turco'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 2 -->
-                                <tr>
                                     <td class="required-label">Servicio de Lavandería</td>
                                     <td>
                                         <select name="servicios[servicio_lavanderia]" class="form-select" required>
@@ -2095,7 +2091,10 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_0123('transfer_htl_playa'); ?>
                                         </select>
                                     </td>
+                                </tr>
 
+                                <!-- FILA 2 -->
+                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['lobby_lounge'] ?? 'Lobby Lounge'; ?>
                                     </td>
@@ -2104,17 +2103,12 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('lobby_lounge'); ?>
                                         </select>
                                     </td>
-
                                     <td class="required-label"><?php echo $map_servicios['bar'] ?? 'Bar'; ?></td>
                                     <td>
                                         <select name="servicios[bar]" class="form-select" required>
                                             <?php echo $opts_012('bar'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 3 -->
-                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['guarda_equipaje'] ?? 'Guarda equipaje'; ?>
                                     </td>
@@ -2131,7 +2125,9 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_0123('asoleadoras'); ?>
                                         </select>
                                     </td>
-
+                                </tr>
+                                <!-- FILA 3 -->
+                                <tr>
                                     <td class="required-label"><?php echo $map_servicios['terraza'] ?? 'Terraza'; ?></td>
                                     <td>
                                         <select name="servicios[terraza]" class="form-select" required>
@@ -2145,10 +2141,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('bar_piscina'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 4 -->
-                                <tr>
                                     <td class="required-label">Servicios de Niñera (Cargo Adicional)</td>
                                     <td>
                                         <select name="servicios[servicios_ninera]" class="form-select" required>
@@ -2164,7 +2156,10 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('muelle_privado'); ?>
                                         </select>
                                     </td>
+                                </tr>
 
+                                <!-- FILA 4 -->
+                                <tr>
                                     <td class="required-label"><?php echo $map_servicios['cafe_bar'] ?? 'Café-Bar'; ?></td>
                                     <td>
                                         <select name="servicios[cafe_bar]" class="form-select" required>
@@ -2179,10 +2174,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('concierge'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 5 -->
-                                <tr>
                                     <td class="required-label">Super/Minimercado/ Tienda de regalos</td>
                                     <td>
                                         <select name="servicios[super_minimercado]" class="form-select" required>
@@ -2198,7 +2189,10 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('sendero_ecologico'); ?>
                                         </select>
                                     </td>
+                                </tr>
 
+                                <!-- FILA 5 -->
+                                <tr>
                                     <td class="required-label"><?php echo $map_servicios['discoteca'] ?? 'Discoteca'; ?>
                                     </td>
                                     <td>
@@ -2213,10 +2207,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('playa'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 6 -->
-                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['alquiler_bicicletas'] ?? 'Alquiler de bicicletas'; ?>
                                     </td>
@@ -2233,7 +2223,9 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('mini_golf'); ?>
                                         </select>
                                     </td>
-
+                                </tr>
+                                <!-- FILA 6 -->
+                                <tr>
                                     <td class="required-label">Café, Agua Saborizada y Aromática en la recepción</td>
                                     <td>
                                         <select name="servicios[cafe_recepcion]" class="form-select" required>
@@ -2247,10 +2239,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('piscina'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 7 -->
-                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['cajero_automatico'] ?? 'Cajero Automático'; ?>
                                     </td>
@@ -2267,7 +2255,9 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('snack_bar'); ?>
                                         </select>
                                     </td>
-
+                                </tr>
+                                <!-- FILA 7 -->
+                                <tr>
                                     <td class="required-label"><?php echo $map_servicios['capilla'] ?? 'Capilla'; ?></td>
                                     <td>
                                         <select name="servicios[capilla]" class="form-select" required>
@@ -2283,10 +2273,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('piscina_infantil'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 8 -->
-                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['cambio_moneda'] ?? 'Cambio de moneda'; ?>
                                     </td>
@@ -2304,7 +2290,10 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('salon_fitness'); ?>
                                         </select>
                                     </td>
+                                </tr>
 
+                                <!-- FILA 8 -->
+                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['club_ninos'] ?? 'Club de Niños'; ?>
                                     </td>
@@ -2320,11 +2309,7 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('pesca'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 9 -->
-                                <tr>
-                                    <td class="required-label">
+                                     <td class="required-label">
                                         <?php echo $map_servicios['enfermeria_medico'] ?? 'Enfermería y/o Servicio Médico'; ?>
                                     </td>
                                     <td>
@@ -2341,7 +2326,9 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_0123('zona_juegos_infantiles'); ?>
                                         </select>
                                     </td>
-
+                                </tr>
+                                <!-- FILA 9 -->
+                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['sala_masajes'] ?? 'Sala de Masajes'; ?>
                                     </td>
@@ -2359,10 +2346,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('salon_juegos'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 10 -->
-                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['personal_bilingue'] ?? 'Personal Bilingüe'; ?>
                                     </td>
@@ -2378,7 +2361,10 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('sauna'); ?>
                                         </select>
                                     </td>
+                                </tr>
 
+                                <!-- FILA 10 -->
+                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['salon_belleza'] ?? 'Salón de belleza'; ?>
                                     </td>
@@ -2394,10 +2380,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('casino'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 11 -->
-                                <tr>
                                     <td class="required-label">
                                         <?php echo $map_servicios['lobby_sala_espera'] ?? 'Lobby con sala de espera'; ?>
                                     </td>
@@ -2413,7 +2395,10 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('spa'); ?>
                                         </select>
                                     </td>
+                                </tr>
 
+                                <!-- FILA 11 -->
+                                <tr>
                                     <td class="required-label"><?php echo $map_servicios['gimnasio'] ?? 'Gimnasio'; ?></td>
                                     <td>
                                         <select name="servicios[gimnasio]" class="form-select" required>
@@ -2429,10 +2414,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('juegos_mesa'); ?>
                                         </select>
                                     </td>
-                                </tr>
-
-                                <!-- FILA 12 -->
-                                <tr>
                                     <td class="required-label"><?php echo $map_servicios['ascensor'] ?? 'Ascensor'; ?></td>
                                     <td>
                                         <select name="servicios[ascensor]" class="form-select" required>
@@ -2448,7 +2429,10 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_0123('toallas_playa_piscina'); ?>
                                         </select>
                                     </td>
+                                </tr>
 
+                                <!-- FILA 12 -->
+                                <tr>
                                     <td class="required-label"><?php echo $map_servicios['jacuzzi'] ?? 'Jacuzzi'; ?></td>
                                     <td>
                                         <select name="servicios[jacuzzi]" class="form-select" required>
@@ -2462,7 +2446,8 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <?php echo $opts_012('ventilador_techo'); ?>
                                         </select>
                                     </td>
-
+                                </tr>
+                                <tr>
                                     <td class="required-label">Cuenta con agua caliente en habitaciones</td>
                                     <td>
                                         <div class="form-check">
@@ -2476,10 +2461,8 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                             <label class="form-check-label" for="agua_caliente_no">No</label>
                                         </div>
                                     </td>
-                                </tr>
-                                <tr>
                                     <td colspan="1">ALGUN OTRO SERVICIO?</td>
-                                    <td colspan="7">
+                                    <td colspan="5">
                                         <textarea id="otroservicio" name="servicios[otro_servicio]" class="form-control"
                                             rows="2"
                                             placeholder="Describa el servicio."><?php echo htmlspecialchars($servicios['otro_servicio'] ?? ''); ?></textarea>

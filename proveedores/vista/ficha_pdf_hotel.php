@@ -8,7 +8,7 @@ $idRol        = (int) ($_SESSION['id_rol']    ?? 0);
 $nitSession   = $_SESSION['usuario']           ?? null;
 $isProveedor  = (bool) ($_SESSION['PROV_AUTH'] ?? false);
 
-$rolesPermitidos = [1, 2, 6, 7, 8, 9];
+$rolesPermitidos = [1, 2, 6, 5, 7, 8, 9, 10];
 if (!in_array($idRol, $rolesPermitidos, true) && !$isProveedor) {
     http_response_code(403);
     exit('Acceso denegado.');

@@ -19,7 +19,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Definir roles permitidos
 $rolesProveedores = [6, 7]; // Hotel individual, Cadena hotelera
-$rolesAdministrativos = [1, 2, 8, 9]; // Admin, Analista Contable, Rol 8, Gestoras
+$rolesAdministrativos = [1, 2, 5, 8, 9, 10]; // Admin, Analista Contable, Rol 8, Gestoras
 $rolesPermitidos = array_merge($rolesProveedores, $rolesAdministrativos);
 
 // Verificar autenticación

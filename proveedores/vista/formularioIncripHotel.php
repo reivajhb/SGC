@@ -440,7 +440,7 @@ if ($user_id) {
     <!-- <link rel="stylesheet" type="text/css" href="estilosformulario.css"> -->
     <link rel="stylesheet" type="text/css" href="../../estilos/estilos.css">
     <link rel="stylesheet" type="text/css" href="estilos_hotel_moderno.css?v=habitaciones-20260612">
-    <link rel="icon" type="image/x-icon" href="/facturacion/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../../img/pnv.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 

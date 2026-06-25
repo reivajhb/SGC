@@ -23,6 +23,8 @@ if ((int) $idRol !== 7) {
 // Parámetro de búsqueda (viene del buscador del header cuando hay múltiples resultados)
 $filtroQ      = trim($_GET['q'] ?? '');
 $noEncontrado = isset($_GET['notfound']) ? trim($_GET['notfound']) : null;
+$bulkImportResult = $_SESSION['bulk_import_result'] ?? null;
+unset($_SESSION['bulk_import_result']);
 
 // Consultar hoteles de la cadena (compatibilidad: usuario_creacion o FK id_usuario_creacion)
 $hoteles = [];
@@ -155,6 +157,27 @@ header("Pragma: no-cache");
     }
 
     .btn-register i {
+      margin-right: 0.5rem;
+    }
+    .btn-import {
+      background: linear-gradient(135deg, #00a3a3, #007b83);
+      border: none;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 123, 131, 0.3);
+    }
+
+    .btn-import:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 123, 131, 0.4);
+      background: linear-gradient(135deg, #008b8b, #006a70);
+      color: white;
+    }
+
+    .btn-import i {
       margin-right: 0.5rem;
     }
 
@@ -377,11 +400,39 @@ header("Pragma: no-cache");
           <h3><i class="fas fa-hotel me-2"></i>Mis Hoteles</h3>
           <p class="mb-0 mt-2" style="opacity: 0.9;">Gestiona todos los hoteles de tu cadena hotelera</p>
         </div>
-        <a href="../vista/formularioIncripHotel.php?nuevo=1" class="btn btn-register">
-          <i class="fas fa-plus-circle"></i> Registrar nuevo hotel
-        </a>
+        <div class="d-flex gap-2 flex-wrap justify-content-end">
+          <a href="../vista/formularioIncripHotel.php?nuevo=1" class="btn btn-register">
+            <i class="fas fa-plus-circle"></i> Registrar nuevo hotel
+          </a>
+        </div>
       </div>
     </div>
+    <?php if (is_array($bulkImportResult)): ?>
+      <div class="alert <?php echo !empty($bulkImportResult['ok']) ? 'alert-success' : 'alert-warning'; ?>">
+        <i class="fas <?php echo !empty($bulkImportResult['ok']) ? 'fa-check-circle' : 'fa-exclamation-triangle'; ?> me-2"></i>
+        <?php echo htmlspecialchars($bulkImportResult['mensaje'] ?? 'Proceso finalizado.'); ?>
+
+        <?php if (!empty($bulkImportResult['items']) && is_array($bulkImportResult['items'])): ?>
+          <ul class="mb-0 mt-2">
+            <?php foreach ($bulkImportResult['items'] as $item): ?>
+              <li>
+                <?php echo htmlspecialchars(($item['accion'] ?? '') === 'actualizado' ? 'Actualizado' : 'Creado'); ?>:
+                <strong><?php echo htmlspecialchars($item['hotel'] ?? ''); ?></strong>
+                (ID <?php echo (int) ($item['id_hotel'] ?? 0); ?>)
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+
+        <?php if (!empty($bulkImportResult['errores']) && is_array($bulkImportResult['errores'])): ?>
+          <ul class="mb-0 mt-2">
+            <?php foreach ($bulkImportResult['errores'] as $errorImport): ?>
+              <li><?php echo htmlspecialchars($errorImport); ?></li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
 
     <?php if (isset($_GET['msg']) && $_GET['msg'] === 'deleted'): ?>
       <div class="alert alert-success">
@@ -465,6 +516,7 @@ header("Pragma: no-cache");
                               <i class="fas fa-file-pdf" style="color:#dc3545;"></i> Ver PDF
                             </a>
                           </li>
+                          <?php if (isset($_SESSION['id_rol']) && in_array($_SESSION['id_rol'], [1,8])):?>
                           <li><hr class="dropdown-divider"></li>
                           <li>
                             <button type="button" class="dropdown-item text-danger"
@@ -472,6 +524,8 @@ header("Pragma: no-cache");
                               <i class="fas fa-trash"></i> Eliminar
                             </button>
                           </li>
+                          <?php endif; ?>
+                        </ul>
                         </ul>
                       </div>
                     </td>

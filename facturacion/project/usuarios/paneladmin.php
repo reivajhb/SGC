@@ -49,7 +49,21 @@ $roles = $roles_result->fetch_all(MYSQLI_ASSOC);
 
 <body>
   <div class="container mt-4">
-    <h2 class="text-center mb-4">Administrar Usuarios</h2>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+      <div>
+        <h2 class="mb-1">Administrar Usuarios</h2>
+        <small class="text-muted">Gestiona usuarios, roles y estados desde este panel.</small>
+      </div>
+
+      <a
+        href="registrouser.php"
+        class="btn btn-primary shadow-sm d-inline-flex align-items-center justify-content-center gap-2 px-4"
+        title="Registrar nuevo usuario"
+      >
+        <span class="fw-bold">+</span>
+        <span>Registrar nuevo usuario</span>
+      </a>
+    </div>
 
     <!-- Tabs por rol -->
     <ul class="nav nav-tabs mb-3" id="userTabs" role="tablist">

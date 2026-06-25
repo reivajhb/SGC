@@ -136,6 +136,7 @@ $url_excel = '../../../genexcel/ExcelPagosCausacion.php?' . http_build_query(['f
         /* Definición de anchos de columna */
         .col-check { width: 35px; text-align: center; }
         .col-edit  { width: 45px; text-align: center; }
+        .col-pdf { width: 45px; text-align: center; }
         .col-nit   { width: 90px; }
         .col-nombre { width: 180px; }
         .col-tipo  { width: 80px; }
@@ -243,6 +244,7 @@ $url_excel = '../../../genexcel/ExcelPagosCausacion.php?' . http_build_query(['f
                 <tr>
                     <th class="col-check"><input type="checkbox" id="checkAll"></th>
                     <th class="col-edit">EDIT</th>
+                    <th class="col-pdf">PDF</th>
                     <th class="col-nit">NIT</th>
                     <th class="col-nombre">NOMBRE</th>
                     <th class="col-tipo">TIPO</th>
@@ -262,6 +264,11 @@ $url_excel = '../../../genexcel/ExcelPagosCausacion.php?' . http_build_query(['f
                         <td class="col-check"><input type="checkbox" name="seleccionar[]" value="<?= $fila['id_causacion'] ?>"></td>
                         <td class="col-edit">
                             <a href="modificarCausacion.php?id_causacion=<?= $fila['id_causacion'] ?>" class="btn btn-sm btn-success rounded-circle"><i class="fas fa-pen" style="font-size: 0.7rem;"></i></a>
+                        </td>
+                        <td class="col-pdf">
+                            <a href="verPdfDescom.php?id_causacion=<?= urlencode($fila['id_causacion']) ?>" class="btn btn-sm btn-outline-danger rounded-circle" target="_blank" title="Ver PDF">
+                                <i class="fas fa-file-pdf" style="font-size: 0.7rem;"></i>
+                            </a>
                         </td>
                         <td class="col-nit"><?= $fila['nit_identificacion'] ?></td>
                         <td class="col-nombre" title="<?= $fila['nombre_proveedor'] ?>"><?= $fila['nombre_proveedor'] ?></td>

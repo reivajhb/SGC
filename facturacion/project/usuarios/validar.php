@@ -64,6 +64,9 @@ if ($resultado->num_rows > 0) {
             case 9:
                 header("Location: ../contabilidad/proveedores/consultaFichaProveedores.php");
                 break;
+            case 10:
+                header("Location: ../contabilidad/proveedores/consultaFichaProveedores.php");
+                break;
 
             default:
                 echo "<script>alert('Rol no válido.'); window.location.href = 'index.php';</script>";

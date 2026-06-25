@@ -313,7 +313,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                 Proveedores</a>
                             
 
-                            <?php if (isset($_SESSION['id_rol']) && in_array($_SESSION['id_rol'], [1,2,8,9])):{
+                            <?php if (isset($_SESSION['id_rol']) && in_array($_SESSION['id_rol'], [1,2,5,8,9,10])):{
                                 echo '
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/facturacion/facturacion/project/contabilidad/proveedores/consultaFichaProveedores.php">Consultar Ficha

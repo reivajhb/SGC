@@ -1,202 +1,234 @@
-﻿<!DOCTYPE html>
+﻿<?php
+include "../../config/seguridad.php";
+include "../../config/conexion.php";
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Sidebar según rol
+if (isset($_SESSION['id_rol']) && ($_SESSION['id_rol'] == 1 || $_SESSION['id_rol'] == 8)) {
+    include "../../config/sidebar3.php";
+} else {
+    include "../../config/sidebar.php";
+}
+include "../../config/boton_volver.php";
+
+// Validar acceso para registro de usuarios
+$isAdmin = isset($_SESSION['id_rol']) && ((int)$_SESSION['id_rol'] === 1 || (int)$_SESSION['id_rol'] === 8);
+if (!$isAdmin) {
+    header("Location: ../index.php");
+    exit();
+}
+
+// Obtener roles
+$roles = [];
+$error_mensaje = '';
+
+$consulta = "SELECT id, descripcion FROM tbl_roles ORDER BY descripcion ASC";
+$ejecutar = mysqli_query($conn, $consulta);
+
+if ($ejecutar) {
+    while ($fila = mysqli_fetch_assoc($ejecutar)) {
+        $roles[] = $fila;
+    }
+} else {
+    $error_mensaje = "Error al consultar los roles: " . $conn->error;
+}
+?>
+
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
+    <title>Registro de Usuario</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <title>Registro de Usuario Moderno</title>
-
+    <link rel="stylesheet" type="text/css" href="/facturacion/estilos/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
-        /* Degradado de fondo vibrante y moderno */
-        .gradient-custom {
-            background: #0f2027;
-            background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
-            background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Tarjeta con efecto Glassmorphism (Cristal) */
-        .glass-card {
-            background: rgba(33, 37, 41, 0.85) !important;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .registro-container {
+            max-width: 850px;
+            margin-top: 60px;
         }
 
-        /* Estilización de los inputs */
-        .form-group label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #e0e0e0;
+        .card {
+            border: none;
+            border-radius: 10px;
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            padding: 1.5rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-control,
+        .form-select {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 0.65rem 0.75rem;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
         }
 
         .input-group-text {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #a0a0a0;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            color: #495057;
+            min-width: 45px;
+            justify-content: center;
         }
 
-        .form-control, .form-control:focus {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff !important;
-            transition: all 0.3s ease;
+        .btn {
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            border-radius: 5px;
         }
 
-        /* Estado activo o seleccionado de los campos */
-        .form-control:focus {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: #54a0ff;
-            box-shadow: 0 0 8px rgba(84, 160, 255, 0.5);
-        }
-
-        /* Estilo para las opciones del Select */
-        select option {
-            background-color: #212529;
-            color: #fff;
-        }
-
-        /* Animación suave para el botón */
-        .btn-custom {
-            background: transparent;
-            border: 2px solid #fff;
-            color: #fff;
+        .form-label {
             font-weight: 600;
-            transition: all 0.4s ease;
+            color: #495057;
+            margin-bottom: 0.5rem;
         }
 
-        .btn-custom:hover {
-            background: #fff;
-            color: #0f2027;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+        .container.registro-container {
+            margin-top: 0 !important;
         }
 
-        /* Iconos de Redes Sociales */
-        .social-icon {
-            transition: all 0.3s ease;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .social-icon:hover {
-            color: #fff;
-            transform: scale(1.2);
+        .text-required {
+            color: #dc3545;
         }
     </style>
 </head>
+
 <body>
 
-<section class="vh-100 gradient-custom" style="overflow-y: auto;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-        
-        <div class="card text-white shadow-lg glass-card my-4" style="border-radius: 1.5rem;">
-          <div class="card-body p-4 p-md-5">
-
-            <div class="text-center mb-4">
-              <h2 class="fw-bold text-uppercase" style="letter-spacing: 1px;">Crear Cuenta</h2>
-              <p class="text-white-50">Ingresa tus datos para registrarte en la plataforma</p>
+    <div class="container registro-container">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="text-center mb-0">Registro de Usuario</h2>
             </div>
 
-            <form action="RegistroNew.php" method="post">
-              
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group mb-3">
-                    <label for="typeEmailX">Usuario*</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-                      <input name="usuario" type="text" id="typeEmailX" class="form-control" required />
+            <div class="card-body">
+                <?php if (!empty($error_mensaje)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Error:</strong> <?= htmlspecialchars($error_mensaje) ?>
                     </div>
-                  </div>
+                <?php endif; ?>
 
-                  <div class="form-group mb-3">
-                    <label for="typeNombreX">Nombre completo*</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-id-card"></i></span></div>
-                      <input name="nombre" type="text" id="typeNombreX" class="form-control" required />
+                <form action="RegistroNew.php" method="post" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="usuario" class="form-label">Usuario <span class="text-required">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input name="usuario" type="text" id="usuario" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre completo <span class="text-required">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                    <input name="nombre" type="text" id="nombre" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña <span class="text-required">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input name="contraseña" type="password" id="password" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="id_rol" class="form-label">Rol <span class="text-required">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                    <select name="id_rol" id="id_rol" class="form-select" required>
+                                        <option value="">Seleccione un rol</option>
+                                        <?php foreach ($roles as $opciones): ?>
+                                            <option value="<?= (int)$opciones['id'] ?>">
+                                                <?= htmlspecialchars($opciones['descripcion']) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">Correo electrónico <small class="text-muted">(opcional)</small></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input name="correo" type="email" id="correo" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono <small class="text-muted">(opcional)</small></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    <input name="telefono" type="text" id="telefono" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="mb-4">
+                                <label for="direccion" class="form-label">Dirección <small class="text-muted">(opcional)</small></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                    <input name="direccion" type="text" id="direccion" class="form-control">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="form-group mb-3">
-                    <label for="typePasswordX">Contraseña*</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-lock"></i></span></div>
-                      <input name="contraseña" type="password" id="typePasswordX" class="form-control" required />
-                    </div>
-                  </div>
-
-                  <div class="form-group mb-3">
-                    <label for="id_rol">Rol*</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-tag"></i></span></div>
-                      <select name="id_rol" id="id_rol" class="form-control" required>
-                        <?php
-                        include "../../config/conexion.php"; 
-                        $consulta = "SELECT * FROM tbl_roles ";
-                        $ejecutar = mysqli_query($conn,$consulta);
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         
-                        foreach ($ejecutar as $opciones): ?>
-                          <option value="<?php echo $opciones['id']?>"><?php echo $opciones['descripcion']?></option>
-                        <?php endforeach ?>
-                      </select>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-user-plus"></i> Registrar Usuario
+                        </button>
                     </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="form-group mb-3">
-                    <label for="typeCorreoX">Correo electrónico <small class="text-white-50">(opcional)</small></label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
-                      <input name="correo" type="email" id="typeCorreoX" class="form-control" />
-                    </div>
-                  </div>
-
-                  <div class="form-group mb-3">
-                    <label for="typeTelefonoX">Teléfono <small class="text-white-50">(opcional)</small></label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone"></i></span></div>
-                      <input name="telefono" type="text" id="typeTelefonoX" class="form-control" />
-                    </div>
-                  </div>
-
-                  <div class="form-group mb-4">
-                    <label for="typeDireccionX">Dirección <small class="text-white-50">(opcional)</small></label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span></div>
-                      <input name="direccion" type="text" id="typeDireccionX" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="text-center mt-3">
-                <button class="btn btn-custom btn-lg px-5 w-100" type="submit">Registrarse</button>
-              </div>
-
-            </form>
-
-            <div class="d-flex justify-content-center text-center mt-4 pt-2">
-              <a href="#!" class="social-icon mx-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-              <a href="#!" class="social-icon mx-3"><i class="fab fa-twitter fa-lg"></i></a>
-              <a href="#!" class="social-icon mx-3"><i class="fab fa-google fa-lg"></i></a>
+                </form>
             </div>
-
-          </div>
         </div>
-
-      </div>
     </div>
-  </div>
-</section>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>

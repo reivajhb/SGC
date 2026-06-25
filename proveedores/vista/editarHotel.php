@@ -470,12 +470,11 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Hotel: <?php echo htmlspecialchars($datos_hotel['nombre']); ?></title>
-
+    <link rel="icon" type="image/x-icon" href="../../img/pnv.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="estilos_hotel_moderno.css?v=habitaciones-20260612">
-    <link rel="icon" type="image/x-icon" href="/facturacion/img/favicon.jpg">
     <style>
         /* Estilo alineado con formularioIncripHotel.php */
         body {
@@ -486,6 +485,15 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
             background-size: cover;
         }
 
+        #habitaciones .habitaciones-table tbody tr {
+            height: auto !important;
+        }
+
+        #habitaciones .habitaciones-table tbody td {
+            height: auto !important;
+            padding: 6px 8px !important;
+            vertical-align: middle !important;
+        }
         /* Contenedor principal tipo “tarjeta” */
         .container-fluid.page-card {
             background-color: rgba(255, 255, 255, 0.95);
@@ -573,6 +581,36 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                 column-count: 1;
             }
         }
+        #habitaciones .table-responsive {
+            height: auto !important;
+            max-height: none !important;
+            align-items: flex-start !important;
+        }
+
+        #habitaciones .habitaciones-table,
+        #habitaciones .habitaciones-table tbody,
+        #habitaciones .habitaciones-table tr,
+        #habitaciones .habitaciones-table td {
+            height: auto !important;
+            min-height: 0 !important;
+        }
+
+        #habitaciones .habitaciones-table tbody td {
+            padding: 6px 8px !important;
+            vertical-align: middle !important;
+        }
+
+        #habitaciones .habitaciones-table .form-control-sm {
+            min-height: 32px;
+            height: 32px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+
+        #habitaciones .habitaciones-table textarea.form-control-sm {
+            height: 32px !important;
+            resize: vertical;
+        }
         #loading-overlay {
         display: none;
         position: fixed;
@@ -621,6 +659,40 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
         @keyframes spin {
             100% { transform: rotate(360deg); }
         }
+
+        #habitaciones .habitaciones-table {
+            height: auto !important;
+            min-height: 0 !important;
+        }
+
+        #habitaciones .habitaciones-table tbody {
+            height: auto !important;
+            min-height: 0 !important;
+        }
+
+        #habitaciones .habitaciones-table tbody tr.hab-row {
+            height: 45px !important;
+            min-height: 45px !important;
+        }
+
+        #habitaciones .habitaciones-table tbody tr.hab-row td {
+            height: 45px !important;
+            min-height: 45px !important;
+            padding: 6px 8px !important;
+            vertical-align: middle !important;
+        }
+
+        #habitaciones .habitaciones-table input,
+        #habitaciones .habitaciones-table textarea {
+            height: 32px !important;
+        }
+
+        #habitaciones .habitaciones-responsive {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow-x: auto;
+    }
     </style>
 </head>
 
@@ -2168,7 +2240,7 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                     <button type="button" class="btn btn-sm btn-success mb-2" id="addHabitacionBtn">+ Agregar
                         habitación</button>
 
-                    <div class="table-responsive">
+                    <div class="table-responsive habitaciones-responsive">
                         <table class="table table-striped table-bordered table-sm align-middle small habitaciones-table">
                             <caption class="visually-hidden">Lista de tipos de habitaciones y sus especificaciones
                             </caption>
@@ -2204,13 +2276,14 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                     }
                                     ?>
                                     <tr class="hab-row">
-                                        <input type="hidden" name="habitaciones[<?php echo $i; ?>][id_hab]"
-                                            value="<?php echo (int) $h['id_hab']; ?>">
-                                        <input type="hidden" name="habitaciones[<?php echo $i; ?>][accion]" value="keep">
-
-                                        <td><input type="text" name="habitaciones[<?php echo $i; ?>][tipo_habitacion]"
+                                        <td>
+                                            <input type="hidden" name="habitaciones[<?php echo $i; ?>][id_hab]"
+                                                value="<?php echo (int) $h['id_hab']; ?>">
+                                            <input type="hidden" name="habitaciones[<?php echo $i; ?>][accion]" value="keep">
+                                            <input type="text" name="habitaciones[<?php echo $i; ?>][tipo_habitacion]"
                                                 class="form-control form-control-sm"
-                                                value="<?php echo htmlspecialchars($h['tipo_habitacion']); ?>"></td>
+                                                value="<?php echo htmlspecialchars($h['tipo_habitacion']); ?>">
+                                        </td>
                                         <td><input type="number" name="habitaciones[<?php echo $i; ?>][total_habitaciones]"
                                                 class="form-control form-control-sm"
                                                 value="<?php echo htmlspecialchars($h['total_habitaciones']); ?>" min="0">
@@ -2248,13 +2321,6 @@ if ($rowSig && !empty($rowSig['ruta_almacenamiento'])) {
                                         <td class="services-cell"
                                             data-services="<?php echo htmlspecialchars(implode(';', $servicios_data['servicios'])); ?>"
                                             data-description="<?php echo htmlspecialchars($servicios_data['obs']); ?>">
-
-                                            <div class="service-display small text-dark mb-1"
-                                                style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-                                                title="<?php echo htmlspecialchars($resumen_visual); ?>">
-                                                <?php echo htmlspecialchars($resumen_visual); ?>
-                                            </div>
-
                                             <button type="button" class="btn btn-primary btn-xs add-service-btn">
                                                 <i class="fas fa-edit"></i> Add Servicio
                                             </button>

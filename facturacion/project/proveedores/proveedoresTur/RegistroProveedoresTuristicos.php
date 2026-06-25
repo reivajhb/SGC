@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include "../../../config/seguridad.php";
 include "../../../config/conexion.php";
 
@@ -88,9 +88,13 @@ if (isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1) {
         }
 
         .input-custom {
-            border-radius: 8px;
-            padding: 0.75rem;
+            height: 38px;
+            min-height: 38px;
+            border-radius: 4px;
+            padding: 0.375rem 0.75rem;
             border: 1px solid #ced4da;
+            font-size: 1rem;
+            line-height: 1.5;
             transition: all 0.3s ease;
         }
 
@@ -100,6 +104,32 @@ if (isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1) {
             outline: none;
         }
 
+        input[type="file"].input-custom {
+            height: 38px;
+            min-height: 38px;
+            max-height: 38px;
+            padding: 0;
+            line-height: 38px;
+            overflow: hidden;
+        }
+
+        input[type="file"].input-custom::file-selector-button {
+            height: 36px;
+            padding: 0 0.75rem;
+            margin: 0 0.75rem 0 0;
+            line-height: 36px;
+            border: 0;
+            border-right: 1px solid #ced4da;
+        }
+
+        input[type="file"].input-custom::-webkit-file-upload-button {
+            height: 36px;
+            padding: 0 0.75rem;
+            margin: 0 0.75rem 0 0;
+            line-height: 36px;
+            border: 0;
+            border-right: 1px solid #ced4da;
+        }
         /* Botón Verde Vivo solicitado */
         .btn-registrar-prov {
             background-color: #27ae60;
@@ -188,18 +218,58 @@ if (isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1) {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .select2-container .select2-selection--single {
-            height: 30px !important;
-            border: 1px solid #ced4da !important;
-            border-radius: 2px !important;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            background-color: #fff !important;
+        #formRegistroProveedor .select2-container,
+        #formRegistroProveedor .select2-container .selection,
+        #formRegistroProveedor .select2-container--default .select2-selection--single {
+            width: 100% !important;
+            height: 38px !important;
+            min-height: 38px !important;
+            max-height: 38px !important;
         }
 
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 38px !important;
-            padding-left: 12px !important;
-            padding-top: 0 !important;
+        #formRegistroProveedor .select2-container--default .select2-selection--single {
+            border: 1px solid #ced4da !important;
+            border-radius: 4px !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+            background-color: #fff !important;
+            padding: 0 !important;
+            display: block !important;
+            transition: all 0.3s ease;
+            font-size: 1rem !important;
+        }
+
+        #formRegistroProveedor .select2-container--default.select2-container--focus .select2-selection--single,
+        #formRegistroProveedor .select2-container--default.select2-container--open .select2-selection--single {
+            border-color: #2ecc71 !important;
+            box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.15) !important;
+            outline: none !important;
+        }
+
+        #formRegistroProveedor .select2-container--default .select2-selection--single .select2-selection__rendered {
+            height: 36px !important;
+            line-height: 36px !important;
+            padding: 0 2.25rem 0 0.75rem !important;
+            color: #212529;
+            font-size: 1rem !important;
+        }
+
+        #formRegistroProveedor .select2-container--default .select2-selection--single .select2-selection__placeholder {
+            color: #6c757d;
+            display: block;
+            height: 36px !important;
+            line-height: 36px !important;
+            font-size: 1rem !important;
+        }
+
+        #formRegistroProveedor .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 36px !important;
+            top: 0 !important;
+            right: 0.75rem !important;
+        }
+
+        #formRegistroProveedor .select2-container--default .select2-selection--single .select2-selection__clear {
+            height: 36px !important;
+            line-height: 36px !important;
         }
         @keyframes pulse {
             0%, 100% {
@@ -372,7 +442,7 @@ if (isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1) {
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <label class="label-custom">RUT*</label>
-                            <input id="rut" name="rut" type="file" class="form-control input-custom"
+                            <input style="padding-bottom: 10px !important;" id="rut" name="rut" type="file" class="form-control input-custom"
                                 placeholder="Suba el documento del RUT" required>
                             <small id="msg_rut" class="text-muted">Se validará la vigencia antes de registrar.</small>
                         </div>  
